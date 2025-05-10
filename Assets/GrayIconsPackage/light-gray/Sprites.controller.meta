@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 489331764be78277b93082c2505de8ee
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287075
+  packageName: Basic Pixel Icons (Light & Dark)
+  packageVersion: 1.0
+  assetPath: Assets/GrayIconsPackage/light-gray/Sprites.controller
+  uploadId: 669531
