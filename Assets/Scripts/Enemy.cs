@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
 
             currentIndex++;
             Vector3 direction = (wayPoints[currentIndex].position - transform.position).normalized;
-            monsterMove.MoveTo(direction);
+            monsterMove.MoveTo(direction); 
         }
         else
         {
