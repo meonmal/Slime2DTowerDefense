@@ -67,7 +67,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 18
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -158,12 +158,12 @@ TextureImporter:
       name: Bat_Attack_FX_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 153
+        y: 29
+        width: 7
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: Bat_Attack_FX_4
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
+        x: 220
+        y: 24
+        width: 5
+        height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -199,45 +199,67 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bat_Attack_FX_5
+      name: Bat_Attack_FX_0
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
+        x: 23
+        y: 26
+        width: 11
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bb06a4440b024e90800000000000000
-      internalID: -7043054754294527056
+      spriteID: 7c42496103511234f88186a91fe07b11
+      internalID: 692339921
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bat_Attack_FX_6
+      name: Bat_Attack_FX_1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
+        x: 83
+        y: 24
+        width: 15
+        height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbd83b1401d735760800000000000000
-      internalID: 7445432117748796859
+      spriteID: 95f643fe8c3ed3b4fa85cd45f4bee9b5
+      internalID: 543666369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat_Attack_FX_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 23
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 638e360ef12d60d4bac20b07737b69a6
+      internalID: 183768185
       vertices: []
       indices: 
       edges: []
@@ -256,10 +278,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Bat_Attack_FX_0: 692339921
+      Bat_Attack_FX_1: 543666369
+      Bat_Attack_FX_2: 183768185
       Bat_Attack_FX_3: -4250461480888467967
       Bat_Attack_FX_4: 3633049024551515399
-      Bat_Attack_FX_5: -7043054754294527056
-      Bat_Attack_FX_6: 7445432117748796859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
