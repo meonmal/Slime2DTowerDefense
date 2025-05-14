@@ -8,9 +8,17 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
+    private GameObject enemyHpSliderPrefab;
+    [SerializeField]
+    private Transform canvasTransform;
+    [SerializeField]
     private float spawnTime;
     [SerializeField]
     private Transform[] wayPoints;
+    [SerializeField]
+    private PlayerHp playerHp;
+    [SerializeField]
+    private PlayerGold playerGold;
     private List<Enemy> enemyList;
 
     public List<Enemy> EnemyList => enemyList;
@@ -32,14 +40,35 @@ public class EnemySpawner : MonoBehaviour
             enemy.SetUp(this, wayPoints);
             enemyList.Add(enemy);
 
+            SpawnerEnemyHpSlider(clone);
+
             yield return new WaitForSeconds(spawnTime);
         }
     }
 
-    public void DestroyEnemy(Enemy enemy)
+    public void DestroyEnemy(EnemyDestroyType type, Enemy enemy, int gold)
     {
+        if(type == EnemyDestroyType.Arrive)
+        {
+            playerHp.TakeDamage(1);
+        }
+        else if(type == EnemyDestroyType.Kill)
+        {
+            playerGold.CurrentGold += gold;
+        }
+
         enemyList.Remove(enemy);
 
         Destroy(enemy.gameObject);
+    }
+
+    private void SpawnerEnemyHpSlider(GameObject enemy)
+    {
+        GameObject sliderClone = Instantiate(enemyHpSliderPrefab);
+        sliderClone.transform.SetParent(canvasTransform);
+        sliderClone.transform.localScale = Vector3.one;
+
+        sliderClone.GetComponent<SliderPositionAutoSetter>().Setup(enemy.transform);
+        sliderClone.GetComponent<EnemyHpViewer>().Setup(enemy.GetComponent<EnemyHp>());
     }
 }

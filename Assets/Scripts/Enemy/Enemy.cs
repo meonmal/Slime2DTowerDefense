@@ -2,29 +2,17 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
+public enum EnemyDestroyType { Kill = 0, Arrive }
+
 public class Enemy : MonoBehaviour
 {
-    /// <summary>
-    /// 이동 경로 개수
-    /// </summary>
     private int         wayCount;
-
-    /// <summary>
-    /// 이동 경로
-    /// </summary>
     private Transform[] wayPoints;
-
-    /// <summary>
-    /// 현재 목표지점 인덱스
-    /// </summary>
     private int         currentIndex = 0;
-
-    /// <summary>
-    /// 오브젝트 이동 제어
-    /// </summary>
     private MonsterMove monsterMove;
-
     private EnemySpawner enemySpawner;
+    [SerializeField]
+    private int gold = 10;
 
     public void SetUp(EnemySpawner enemySpawner, Transform[] wayPoints)
     {
@@ -68,12 +56,13 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            OnDie();
+            gold = 0;
+            OnDie(EnemyDestroyType.Arrive);
         }
     }
 
-    public void OnDie()
+    public void OnDie(EnemyDestroyType type)
     {
-        enemySpawner.DestroyEnemy(this);
+        enemySpawner.DestroyEnemy(type,this, gold);
     }
 }

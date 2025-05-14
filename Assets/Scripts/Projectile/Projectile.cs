@@ -5,11 +5,13 @@ public class Projectile : MonoBehaviour
 {
     private MonsterMove monsterMove;
     private Transform target;
+    private int damage;
 
-    public void Setup(Transform target)
+    public void Setup(Transform target, int damage)
     {
         monsterMove = GetComponent<MonsterMove>();
         this.target = target;
+        this.damage = damage;
     }
 
     private void Update()
@@ -36,7 +38,7 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        collision.GetComponent<Enemy>().OnDie();
+        collision.GetComponent<EnemyHp>().TakeDamage(damage);
         Destroy(gameObject);
     }
 }
