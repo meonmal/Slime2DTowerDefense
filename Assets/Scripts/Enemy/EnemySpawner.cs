@@ -5,36 +5,51 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject enemyPrefab;
+    //[SerializeField]
+    //private GameObject enemyPrefab;
     [SerializeField]
     private GameObject enemyHpSliderPrefab;
     [SerializeField]
     private Transform canvasTransform;
-    [SerializeField]
-    private float spawnTime;
+    //[SerializeField]
+    //private float spawnTime;
     [SerializeField]
     private Transform[] wayPoints;
     [SerializeField]
     private PlayerHp playerHp;
     [SerializeField]
     private PlayerGold playerGold;
+    private Wave currentWave;
+    private int currentEnemyCount;
     private List<Enemy> enemyList;
 
     public List<Enemy> EnemyList => enemyList;
+
+    public int CurrentEnemyCount => currentEnemyCount;
+    public int MaxEnemyCount => currentWave.maxEnemyCount;
 
     private void Awake()
     {
         enemyList = new List<Enemy>();
 
+        // StartCoroutine(spawnEnemy());
+    }
+
+    public void StartWave(Wave wave)
+    {
+        currentWave = wave;
+        currentEnemyCount = currentWave.maxEnemyCount;
         StartCoroutine(spawnEnemy());
     }
 
     private IEnumerator spawnEnemy()
     {
-        while (true)
+        int spawnEnemyCount = 0;
+
+        while(spawnEnemyCount < currentWave.maxEnemyCount)
         {
-            GameObject clone = Instantiate(enemyPrefab,Vector3.zero, Quaternion.identity);
+            int enemyIndex = Random.Range(0, currentWave.enemyPrefabs.Length);
+            GameObject clone = Instantiate(currentWave.enemyPrefabs[enemyIndex]);
             Enemy enemy = clone.GetComponent<Enemy>();
 
             enemy.SetUp(this, wayPoints);
@@ -42,8 +57,11 @@ public class EnemySpawner : MonoBehaviour
 
             SpawnerEnemyHpSlider(clone);
 
-            yield return new WaitForSeconds(spawnTime);
+            spawnEnemyCount++;
+
+            yield return new WaitForSeconds(currentWave.spawnTime);
         }
+
     }
 
     public void DestroyEnemy(EnemyDestroyType type, Enemy enemy, int gold)
@@ -56,6 +74,8 @@ public class EnemySpawner : MonoBehaviour
         {
             playerGold.CurrentGold += gold;
         }
+
+        currentEnemyCount--;
 
         enemyList.Remove(enemy);
 
