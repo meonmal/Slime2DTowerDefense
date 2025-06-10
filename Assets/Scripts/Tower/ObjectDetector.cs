@@ -4,6 +4,8 @@ public class ObjectDetector : MonoBehaviour
 {
     [SerializeField]
     private TowerSpawner towerSpawner;
+    [SerializeField]
+    private TowerDataViewer towerDataViewer;
 
     /// <summary>
     /// 메인 카메라
@@ -34,6 +36,10 @@ public class ObjectDetector : MonoBehaviour
                 if (hit.transform.CompareTag("Tile"))
                 {
                     towerSpawner.SpawnTower(hit.transform);
+                }
+                else if (hit.transform.CompareTag("Tower"))
+                {
+                    towerDataViewer.OnPanel(hit.transform);
                 }
             }
         }
