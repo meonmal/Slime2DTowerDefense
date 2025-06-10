@@ -8,29 +8,30 @@ public enum WeaponState { SearchTarget = 0, AttackToTarget }
 public class TowerWeapon : MonoBehaviour
 {
     [SerializeField]
+    private TowerTemplate towertemplate;
+    [SerializeField]
     private GameObject projectilePrefab;
     [SerializeField]
     private Transform spawnPoint;
-    [SerializeField]
-    private float attackRate = 0.5f;
-    [SerializeField]
-    private float attackRange = 2.0f;
-    [SerializeField]
-    private int attackDamage = 1;
     private int level = 0;
     private WeaponState weaponState = WeaponState.SearchTarget;
     private Transform attackTarget = null;
     private EnemySpawner enemySpawner;
+    private PlayerGold playerGold;
+    private Tile owerTile;
 
-    public float Damage => attackDamage;
-    public float Rate => attackRate;
-    public float Range => attackRange;
+    public float Damage => towertemplate.weapon[level].damage;
+    public float Rate => towertemplate.weapon[level].rate;
+    public float Range => towertemplate.weapon[level].range;
     public int Level => level + 1;
+    public int MaxLevel => towertemplate.weapon.Length;
 
-    public void Setup(EnemySpawner enemySpawner)
+    public void Setup(EnemySpawner enemySpawner, PlayerGold playerGold, Tile owerTile)
     {
         this.enemySpawner = enemySpawner;
-        
+        this.playerGold = playerGold;
+        this.owerTile = owerTile;
+
         ChangeState(WeaponState.SearchTarget);
     }
 
@@ -78,7 +79,7 @@ public class TowerWeapon : MonoBehaviour
             {
                 float distance = Vector3.Distance(enemySpawner.EnemyList[i].transform.position, transform.position);
 
-                if(distance <= attackRange && distance <= closestDistSqr)
+                if(distance <= towertemplate.weapon[level].range && distance <= closestDistSqr)
                 {
                     closestDistSqr = distance;
                     attackTarget = enemySpawner.EnemyList[i].transform;
@@ -105,14 +106,14 @@ public class TowerWeapon : MonoBehaviour
             }
 
             float distance = Vector3.Distance(attackTarget.position, transform.position);
-            if(distance > attackRange)
+            if(distance > towertemplate.weapon[level].range)
             {
                 attackTarget = null;
                 ChangeState(WeaponState.SearchTarget);
                 break;
             }
 
-            yield return new WaitForSeconds(attackRate);
+            yield return new WaitForSeconds(towertemplate.weapon[level].rate);
 
             SpawnProjectile();
         }
@@ -121,6 +122,26 @@ public class TowerWeapon : MonoBehaviour
     private void SpawnProjectile()
     {
         GameObject clone = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
-        clone.GetComponent<Projectile>().Setup(attackTarget, attackDamage);
+        clone.GetComponent<Projectile>().Setup(attackTarget, towertemplate.weapon[level].damage);
+    }
+
+    public bool Upgrade()
+    {
+        if(playerGold.CurrentGold < towertemplate.weapon[level + 1].cost)
+        {
+            return false;
+        }
+
+        level++;
+        playerGold.CurrentGold -= towertemplate.weapon[level].cost;
+
+        return true;
+    }
+
+    public void Sell()
+    {
+        playerGold.CurrentGold += towertemplate.weapon[level].sell;
+        owerTile.IsBuildTower = false;
+        Destroy(gameObject);
     }
 }

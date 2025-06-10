@@ -5,9 +5,9 @@ public class Projectile : MonoBehaviour
 {
     private MonsterMove monsterMove;
     private Transform target;
-    private int damage;
+    private float damage;
 
-    public void Setup(Transform target, int damage)
+    public void Setup(Transform target, float damage)
     {
         monsterMove = GetComponent<MonsterMove>();
         this.target = target;

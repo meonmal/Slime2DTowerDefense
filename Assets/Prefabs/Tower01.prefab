@@ -133,11 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e159e5e2bbdac4e800e960c6df976b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towertemplate: {fileID: 11400000, guid: 087c33efd29830a429be1d1b0ea6a707, type: 2}
   projectilePrefab: {fileID: 8692447282619869585, guid: 2c289e8112a011d43a4edcb685b7a8e7, type: 3}
   spawnPoint: {fileID: 3954784465680169257}
-  attackRate: 0.5
-  attackRange: 2
-  attackDamage: 1
 --- !u!65 &6393664417951798538
 BoxCollider:
   m_ObjectHideFlags: 0
