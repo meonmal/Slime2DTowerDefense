@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03723d5f42f5a7d43838efaff02f358d, type: 3}
+  m_Name: Tower04Buff
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 2198936133557521404, guid: 30696125735fd0045b2ce2fe51f2d6a2, type: 3}
+  followTowerPrefab: {fileID: 8846750608908190975, guid: 6b1033552ab481a4c97143e3d0c5e6c6, type: 3}
+  weapon:
+  - damage: 0
+    slow: 0
+    buff: 0.3
+    rate: 0
+    range: 2
+    cost: 1000
+    sell: 500
+  - damage: 0
+    slow: 0
+    buff: 0.5
+    rate: 0
+    range: 3
+    cost: 1200
+    sell: 600
+  - damage: 0
+    slow: 0
+    buff: 1
+    rate: 0
+    range: 5
+    cost: 2000
+    sell: 2000
+  towerSprite: {fileID: -9010615838638220262, guid: 26f2fab31eacb6948aaee40453cfc60b, type: 3}

@@ -16,17 +16,21 @@ MonoBehaviour:
   followTowerPrefab: {fileID: 8846750608908190975, guid: 3910e21917f753449a16f9dcd4457423, type: 3}
   weapon:
   - damage: 1
+    slow: 0
     rate: 0.5
     range: 2
     cost: 50
     sell: 25
   - damage: 2
+    slow: 0
     rate: 0.4
     range: 3
     cost: 70
     sell: 50
   - damage: 3
+    slow: 0
     rate: 0.2
     range: 4
     cost: 100
     sell: 100
+  towerSprite: {fileID: 7013631516640934163, guid: b438465a32eb63243a7889eb1f400d29, type: 3}
